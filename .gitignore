@@ -1,0 +1,11 @@
+venv/
+__pycache__/
+*.egg-info/
+.vscode/
+.idea/
+practice/
+data/
+build/
+.coverage
+*.sublime-project
+*.sublime-workspace
