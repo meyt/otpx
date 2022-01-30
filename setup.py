@@ -13,6 +13,9 @@ setup(
     name="otpx",
     version=read_version("otpx"),
     description="Simple OTP Client",
+    long_description=open("README.md").read(),
+    long_description_content_type="text/markdown",
+    url="http://github.com/meyt/otpx",
     author="MeyT",
     install_requires=[
         "pyotp >= 2.6.0",
