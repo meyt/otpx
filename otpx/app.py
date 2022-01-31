@@ -98,22 +98,13 @@ class Otpx:
         maxcolwidth = max(map(len, self.keys.keys()))
         colwidths = (maxcolwidth + 2, 10, 10)
 
-        def presenter():
-            while not exitevent.is_set():
-                out.refresh()
-                out.addrow(("name", "code", "remains"), colwidths=colwidths)
-                for k, v in self.keys.items():
-                    out.addrow(
-                        (k, v.code, int(v.remains)), colwidths=colwidths
-                    )
+        while not exitevent.is_set():
+            out.refresh()
+            out.addrow(("name", "code", "remains"), colwidths=colwidths)
+            for k, v in self.keys.items():
+                out.addrow((k, v.code, int(v.remains)), colwidths=colwidths)
 
-                exitevent.wait(self.outgap)
-
-        for w in (self.worker1, self.worker2, self.worker3):
-            t = threading.Thread(target=presenter, daemon=True)
-            t.start()
-
-        signal.pause()
+            exitevent.wait(self.outgap)
 
     def _find_item(self, k):
         v = self.keys.get(k.lower())
